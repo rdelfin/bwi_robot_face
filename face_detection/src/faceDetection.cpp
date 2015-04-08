@@ -3,9 +3,9 @@
  #include "opencv2/imgproc/imgproc.hpp"
 
  #include "ros/ros.h"
- #include "face_tracker/eye.h"
- #include "face_tracker/face.h"
- #include "face_tracker/faceDetection.h"
+ #include "face_detection/eye.h"
+ #include "face_detection/face.h"
+ #include "face_detection/faceDetection.h"
 
  #include <iostream>
  #include <stdio.h>
@@ -24,6 +24,9 @@ void detectAndDisplay( Mat frame , ros::Publisher face_pub);
  string window_name = "Capture - Face detection";
  RNG rng(12345);
 
+int frameWidth;
+int frameHeight;
+
 struct matchedFace //For matching faces with eyes
 {
   Rect face;
@@ -40,7 +43,7 @@ struct matchedFace //For matching faces with eyes
 //-- ROS portion
 ros::init(argc, argv, "faceDetectorNode");
 ros::NodeHandle n;
-ros::Publisher face_pub = n.advertise<face_tracker::faceDetection>("detectedFaces", 1000);
+ros::Publisher face_pub = n.advertise<face_detection::faceDetection>("detectedFaces", 1000);
 ros::Rate loop_rate(10);
 
 
@@ -55,6 +58,13 @@ ros::Rate loop_rate(10);
 		 while( true )
 		 {
 	 frame = cvQueryFrame( capture );
+
+	 //GETTING FRAME DIMENSIONS
+	 CvSize dim = cvGetSize(capture);
+	 
+	 frameWidth = dim.width;
+	 frameHeight = dim.height;
+	 
 	 ROS_INFO("Capturing frames");
 	 //-- 3. Apply the classifier to the frame
 			 if( !frame.empty() )
@@ -115,6 +125,8 @@ void detectAndDisplay( Mat frame, ros::Publisher face_pub )
 //******************************************************
 //-- facesDetected is what we will publish
 //-- facesDetected is a msg composed of the following
+//	int32 frameWidth
+//	int32 frameHeight
 //	int32 faceCount
 //	face[] faces
 //	--face is a msg composed of the following
@@ -129,13 +141,13 @@ void detectAndDisplay( Mat frame, ros::Publisher face_pub )
 //			int32 width
 //			int32 height
 //******************************************************
-	face_tracker::faceDetection facesDetected;
+	face_detection::faceDetection facesDetected;
 	ROS_INFO("Creating faceDetected msg");
 	facesDetected.faceCount = matchedFaceVector.size();
 	for(int i = 0; i < matchedFaceVector.size(); i++)
 	  {
 	    ROS_INFO("\tAdding face %i", i);
-	    face_tracker::face newFace;
+	    face_detection::face newFace;
 		newFace.x = matchedFaceVector[i].face.x;
 		newFace.y = matchedFaceVector[i].face.y;
 		newFace.width = matchedFaceVector[i].face.width;
@@ -144,7 +156,7 @@ void detectAndDisplay( Mat frame, ros::Publisher face_pub )
 	    	for(int k=0; k< matchedFaceVector[i].eyes.size(); k++)
 	      	{
 		  ROS_INFO("\t\tAdding eye %i to face %i", k, i);
-		  face_tracker::eye newEye;
+		  face_detection::eye newEye;
 			newEye.x = matchedFaceVector[i].eyes[k].x;
 			newEye.y = matchedFaceVector[i].eyes[k].y;
 			newEye.width = matchedFaceVector[i].eyes[k].width;
@@ -155,6 +167,9 @@ void detectAndDisplay( Mat frame, ros::Publisher face_pub )
 		facesDetected.faces.push_back(newFace);
 	  }
 	ROS_INFO("Publishing facesDetected");
+
+	facesDetected.frameWidth = frameWidth;
+	facesDetected.frameHeight = frameHeight;
 	face_pub.publish(facesDetected);
 
  }
