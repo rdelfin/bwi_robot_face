@@ -60,10 +60,9 @@ ros::Rate loop_rate(10);
 	 frame = cvQueryFrame( capture );
 
 	 //GETTING FRAME DIMENSIONS
-	 CvSize dim = cvGetSize(capture);
 	 
-	 frameWidth = dim.width;
-	 frameHeight = dim.height;
+	 frameWidth = (double) cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
+	 frameHeight = (double) cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT);
 	 
 	 ROS_INFO("Capturing frames");
 	 //-- 3. Apply the classifier to the frame
