@@ -14,6 +14,8 @@ Using OpenCV, face tracking has been relatively easy to accomplish. The faceDete
  ```      
 -- facesDetected is a msg composed of the following
 	int32 faceCount
+	int32 frameWidth
+	int32 frameHeight
 	face[] faces
 	--face is a msg composed of the following
 		int32 x
