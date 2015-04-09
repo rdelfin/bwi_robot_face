@@ -36,9 +36,11 @@ Using OpenCV, face tracking has been relatively easy to accomplish. The faceDete
 - faceDetectionNode does not die: pressing ctrl-C while the node is running does not kill the node. It's stubborn.
 
 ####Status of B: Displaying a Face
-No work has been done with regards to B. Ideally, we'll create a node that reads input in from rostopic /detectedFaces and makes some calculations on the optimum position and orientation for the robot's eyes, and then draws those eyes.
+robot_face_node now listens to the messages published by faceDetectionNode on rostopic /detectedFaces and, using some very basic openGL, displays a very basic robot face with very basic eyes that follows face movement very basically.
 
 #####To-Do List for B:
-- Everything.
-- What library or program will we use for the face?
-- 2D or 3D?
+- Still pretty much everything.
+- Current openGL implementation is far from optimized, and the graphics are not smooth at all. Need to make it look nice
+- Improve performance of the node
+- 3D seems very possible
+- Find something better than openGL? I'm...open...to suggestions
