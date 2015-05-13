@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "robot_face")
+set(robot_face_MAINTAINER "joedan <joedan@todo.todo>")
+set(robot_face_DEPRECATED "")
+set(robot_face_VERSION "0.0.0")
+set(robot_face_BUILD_DEPENDS "roscpp" "std_msgs")
+set(robot_face_RUN_DEPENDS "roscpp" "std_msgs")
+set(robot_face_BUILDTOOL_DEPENDS "catkin")

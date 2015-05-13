@@ -1,0 +1,2 @@
+face_detection:robot_face
+-DCATKIN_DEVEL_PREFIX=/home/rdelfin/Documents/bwi_robot_face/devel -DCMAKE_INSTALL_PREFIX=/home/rdelfin/Documents/bwi_robot_face/install
