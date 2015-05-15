@@ -160,6 +160,30 @@ robot_face_node/fast:
 	cd /home/rdelfin/Documents/bwi_robot_face/build && $(MAKE) -f robot_face/CMakeFiles/robot_face_node.dir/build.make robot_face/CMakeFiles/robot_face_node.dir/build
 .PHONY : robot_face_node/fast
 
+src/Util.o: src/Util.cpp.o
+.PHONY : src/Util.o
+
+# target to build an object file
+src/Util.cpp.o:
+	cd /home/rdelfin/Documents/bwi_robot_face/build && $(MAKE) -f robot_face/CMakeFiles/robot_face_node.dir/build.make robot_face/CMakeFiles/robot_face_node.dir/src/Util.cpp.o
+.PHONY : src/Util.cpp.o
+
+src/Util.i: src/Util.cpp.i
+.PHONY : src/Util.i
+
+# target to preprocess a source file
+src/Util.cpp.i:
+	cd /home/rdelfin/Documents/bwi_robot_face/build && $(MAKE) -f robot_face/CMakeFiles/robot_face_node.dir/build.make robot_face/CMakeFiles/robot_face_node.dir/src/Util.cpp.i
+.PHONY : src/Util.cpp.i
+
+src/Util.s: src/Util.cpp.s
+.PHONY : src/Util.s
+
+# target to generate assembly for a file
+src/Util.cpp.s:
+	cd /home/rdelfin/Documents/bwi_robot_face/build && $(MAKE) -f robot_face/CMakeFiles/robot_face_node.dir/build.make robot_face/CMakeFiles/robot_face_node.dir/src/Util.cpp.s
+.PHONY : src/Util.cpp.s
+
 src/robot_face_node.o: src/robot_face_node.cpp.o
 .PHONY : src/robot_face_node.o
 
@@ -198,6 +222,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... robot_face_node"
 	@echo "... test"
+	@echo "... src/Util.o"
+	@echo "... src/Util.i"
+	@echo "... src/Util.s"
 	@echo "... src/robot_face_node.o"
 	@echo "... src/robot_face_node.i"
 	@echo "... src/robot_face_node.s"

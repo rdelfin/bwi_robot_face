@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(GLUT REQUIRED)
 find_package(OpenGL REQUIRED)
+#find_package(GLM REQUIRED)
+#find_package(assimp REQUIRED)
 
 
 ## System dependencies are found with CMake's conventions
@@ -98,7 +100,9 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
+#  ${assimp_INCLUDE_DIRS}
 )
 ###############
 ## Find GLUT ##
@@ -120,13 +124,23 @@ if(NOT OPENGL_FOUND)
     message(ERROR " OPENGL not found!")
 endif(NOT OPENGL_FOUND)
 
+#################
+##  Find GLM   ##
+#################
+#include_directories(${glm_INCLUDE_DIRS})
+#link_directories(${glm_LIBRARY_DIRS})
+#add_definitions(${glm_DEFINITIONS})
+#if(NOT OPENGL_FOUND)
+#    message(ERROR " GLM not found!")
+#endif(NOT OPENGL_FOUND)
+
 ## Declare a cpp library
 # add_library(robot_face
 #   src/${PROJECT_NAME}/robot_face.cpp
 # )
 
 ## Declare a cpp executable
-add_executable(robot_face_node src/robot_face_node.cpp)
+add_executable(robot_face_node src/robot_face_node.cpp src/Util.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes

@@ -8,6 +8,10 @@
 #include <iostream>
 #include <stdio.h>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>  
+
 using namespace std;
 
 //Variables change when window is created, resized

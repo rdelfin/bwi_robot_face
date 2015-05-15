@@ -10,6 +10,7 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 
 # The C and CXX include file search paths:
 SET(CMAKE_C_INCLUDE_PATH
+  "/home/rdelfin/Documents/bwi_robot_face/src/robot_face/include"
   "/home/rdelfin/Documents/bwi_robot_face/devel/include"
   "/home/rdelfin/Documents/bwi_robot_face/src/face_detection/include"
   "/opt/ros/hydro/include"
