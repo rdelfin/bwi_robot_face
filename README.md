@@ -9,7 +9,7 @@ This project consists of two primary parts:
 
 
 
-####Status of A: Recognizing and Tracking Faces
+## Status of A: Recognizing and Tracking Faces
 Using OpenCV, face tracking has been relatively easy to accomplish. The faceDetectionNode uses openCV and some premade cascade files, allowing us to recognize faces in front of standard webcams. It then broadcasts those faces on rostopic /detectedFaces, transmitting a message in the form of facesDetected.msg:
  ```      
 -- facesDetected is a msg composed of the following
@@ -30,15 +30,15 @@ Using OpenCV, face tracking has been relatively easy to accomplish. The faceDete
 			int32 height
 ```
 
-#####To-Do List for A:
+## To-Do List for A:
 - Kinect integration? From what I can tell so far, using a kinect may require jumping through a few hoops
 - Better cascade files? Haven't had enough testing to determine if the ones we have are sufficient, or if there's any room for improvement
 - faceDetectionNode does not die: pressing ctrl-C while the node is running does not kill the node. It's stubborn.
 
-####Status of B: Displaying a Face
+## Status of B: Displaying a Face
 robot_face_node now listens to the messages published by faceDetectionNode on rostopic /detectedFaces and, using some very basic openGL, displays a very basic robot face with very basic eyes that follows face movement very basically.
 
-#####To-Do List for B:
+## To-Do List for B:
 - Still pretty much everything.
 - Current openGL implementation is far from optimized, and the graphics are not smooth at all. Need to make it look nice
 - Improve performance of the node
